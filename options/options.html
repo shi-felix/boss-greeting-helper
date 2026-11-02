@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Boss直聘打招呼助手 - 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Boss直聘打招呼助手</h1>
+      <p class="subtitle">根据岗位JD生成定制化打招呼语</p>
+    </header>
+
+    <!-- API Key 配置 -->
+    <section class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+        <span>DeepSeek API 配置</span>
+      </div>
+      <div class="field">
+        <label for="apiKey">API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-..." autocomplete="off">
+        <p class="hint">在 <a href="https://platform.deepseek.com/api_keys" target="_blank">DeepSeek 开放平台</a> 申请，仅保存在本地。</p>
+      </div>
+      <button id="saveKey" class="btn primary">保存</button>
+      <span id="keyStatus" class="status"></span>
+    </section>
+
+    <!-- 简历管理 -->
+    <section class="card">
+      <div class="card-title">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        <span>简历信息</span>
+      </div>
+
+      <div class="import-area">
+        <input type="file" id="resumeFile" accept=".pdf,.docx,.txt" hidden>
+        <button id="importBtn" class="btn primary">
+          <svg class="icon small" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          导入简历文件
+        </button>
+        <span class="hint inline">支持 PDF / Word(.docx) / TXT</span>
+        <span id="importStatus" class="status"></span>
+      </div>
+
+      <div id="resumeForm" class="resume-form hidden">
+        <p class="hint">AI 已提取以下信息，请核对修正后保存：</p>
+        <div class="grid">
+          <div class="field">
+            <label for="r_name">姓名</label>
+            <input type="text" id="r_name">
+          </div>
+          <div class="field">
+            <label for="r_years">工作年限</label>
+            <input type="text" id="r_years" placeholder="如 3年">
+          </div>
+          <div class="field">
+            <label for="r_currentJob">当前职位</label>
+            <input type="text" id="r_currentJob">
+          </div>
+          <div class="field">
+            <label for="r_targetJob">目标职位</label>
+            <input type="text" id="r_targetJob">
+          </div>
+          <div class="field full">
+            <label for="r_skills">技术栈详情（具体到框架/工具，逗号分隔）</label>
+            <input type="text" id="r_skills" placeholder="如：Python/Java, FastAPI/SpringBoot, MySQL/Redis, LangChain, Vue/React">
+          </div>
+          <div class="field full">
+            <label for="r_aiTools">AI编程工具能力</label>
+            <input type="text" id="r_aiTools" placeholder="如：熟练使用Codex、Claude Code、Cursor进行日常开发">
+            <div class="preset-tags" id="aiToolsPresets">
+              <span class="preset-tag" data-val="Codex">Codex</span>
+              <span class="preset-tag" data-val="Claude Code">Claude Code</span>
+              <span class="preset-tag" data-val="Cursor">Cursor</span>
+              <span class="preset-tag" data-val="Trae">Trae</span>
+              <span class="preset-tag" data-val="Copilot">Copilot</span>
+              <span class="preset-tag" data-val="通义灵码">通义灵码</span>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="r_projects">亮点项目（详细描述：项目名/角色/技术栈/做了什么/效果）</label>
+            <textarea id="r_projects" rows="6"></textarea>
+          </div>
+          <div class="field">
+            <label for="r_education">学历</label>
+            <input type="text" id="r_education">
+          </div>
+          <div class="field">
+            <label for="r_intention">求职意向</label>
+            <input type="text" id="r_intention">
+          </div>
+          <div class="field full">
+            <label for="r_highlight">个人亮点</label>
+            <input type="text" id="r_highlight">
+          </div>
+        </div>
+        <div class="actions">
+          <button id="saveResume" class="btn primary">保存简历</button>
+          <button id="clearResume" class="btn ghost">清空</button>
+          <span id="resumeSaveStatus" class="status"></span>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p class="hint">数据仅保存在本地浏览器，简历信息会随请求发送给 DeepSeek 用于生成打招呼语。</p>
+    </footer>
+  </div>
+
+  <script src="../lib/pdf.min.js"></script>
+  <script src="../lib/mammoth.browser.min.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>

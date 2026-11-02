@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Boss直聘打招呼助手",
+  "version": "1.0.0",
+  "description": "根据岗位JD和你的简历，自动生成定制化打招呼语，提升HR回复率。",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "sidePanel"
+  ],
+  "host_permissions": [
+    "https://www.zhipin.com/*",
+    "https://zhipin.com/*",
+    "https://api.deepseek.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Boss直聘打招呼助手 - 点击打开设置",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options/options.html",
+  "side_panel": {
+    "default_path": "panel/panel.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.zhipin.com/*",
+        "https://zhipin.com/*"
+      ],
+      "js": [
+        "content/content.js"
+      ],
+      "css": [
+        "content/content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "lib/*",
+        "icons/*"
+      ],
+      "matches": [
+        "https://www.zhipin.com/*",
+        "https://zhipin.com/*"
+      ]
+    }
+  ]
+}
