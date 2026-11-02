@@ -47,6 +47,8 @@
 git clone https://github.com/shi-felix/boss-greeting-helper.git
 ```
 
+不想碰命令行？直接下 [Releases](https://github.com/shi-felix/boss-greeting-helper/releases) 里的 zip，解压后按上面第 2 步加载即可。
+
 > 本扩展未上架应用商店，只能以「加载已解压」方式安装。要求 Chrome / Edge **114+**（用到 `chrome.sidePanel`）。
 
 ---
